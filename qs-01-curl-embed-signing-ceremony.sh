@@ -17,7 +17,7 @@ accountId='{ACCOUNT_ID}'
 signerName='{USER_FULLNAME}'
 signerEmail='{USER_EMAIL}'
 # The document you wish to send. Path is relative to the root directory of this repo.
-fileNamePath='../demo_documents/World_Wide_Corp_lorem.pdf'
+fileNamePath='demo_documents/World_Wide_Corp_lorem.pdf'
 
 clientUserId='123'  # Used to indicate that the signer will use an embedded
                     # Signing Ceremony. Represents the signer's userId within
@@ -61,16 +61,16 @@ printf \
     "recipients": {
         "signers": [
             {
-                "email": "${signer_name}",
-                "name": "${signer_email}",
+                "email": "${signerName}",
+                "name": "${signerEmail}",
                 "recipientId": "1",
                 "routingOrder": "1",
                 "clientUserId": "${clientUserId}",
                 "tabs": {
                     "signHereTabs": [
                         {
-                            "documentId": "1", "pageNumber': "1",
-                            "recipientId": "1", "tabLabel": 'SignHereTab',
+                            "documentId": "1", "pageNumber": "1",
+                            "recipientId": "1", "tabLabel": "SignHereTab",
                             "xPosition": "195", "yPosition": "147"
                         }
                     ]
