@@ -91,8 +91,8 @@ cat $response
 echo ""
 
 # pull out the envelopeId
-ENVELOPE_ID=`cat $response | grep envelopeId | sed 's/.*\"envelopeId\": \"//' | sed 's/\",//' | tr -d '\r'`
-echo "EnvelopeId: ${ENVELOPE_ID}"
+envelopeId=`cat $response | grep envelopeId | sed 's/.*\"envelopeId\": \"//' | sed 's/\",//' | tr -d '\r'`
+echo "EnvelopeId: ${envelopeId}"
 
 # Step 2. Create a recipient view (a signing ceremony view)
 #         that the signer will directly open in their browser to sign.
@@ -114,7 +114,7 @@ curl --header "Authorization: Bearer {ACCESS_TOKEN}" \
     \"userName\": \"${signerName}\",
     \"clientUserId\": \"1000\",
 }" \
-     --request POST ${basePath}/v2/accounts/${accountId}/envelopes/${ENVELOPE_ID}/views/recipient \
+     --request POST ${basePath}/v2/accounts/${accountId}/envelopes/${envelopeId}/views/recipient \
      --output ${response}
 
 echo ""
@@ -122,15 +122,15 @@ echo "Response:"
 cat $response
 echo ""
 
-SIGNING_CEREMONY_URL=`cat $response | grep url | sed 's/.*\"url\": \"//' | sed 's/\"//' | tr -d '\r'`
+signingCeremonyUrl=`cat $response | grep url | sed 's/.*\"url\": \"//' | sed 's/\"//' | tr -d '\r'`
 echo ""
 echo "Attempting to automatically open your browser to the signing ceremony url..."
 if which open > /dev/null 2>/dev/null
 then
-  open "$SIGNING_CEREMONY_URL"
+  open "$signingCeremonyUrl"
 elif which start > /dev/null
 then
-  start "$SIGNING_CEREMONY_URL"
+  start "$signingCeremonyUrl"
 fi
 
 # cleanup
