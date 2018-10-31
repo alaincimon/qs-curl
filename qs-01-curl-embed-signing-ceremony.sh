@@ -56,10 +56,10 @@ printf \
         "signers": [
             {
                 "email": "' >> $request_data
-                printf "${signerName}" >> $request_data
+                printf "${signerEmail}" >> $request_data
                 printf '",
                 "name": "' >> $request_data
-                printf "${signerEmail}" >> $request_data
+                printf "${signerName}" >> $request_data
                 printf '",
                 "recipientId": "1",
                 "routingOrder": "1",
@@ -67,7 +67,7 @@ printf \
                 "tabs": {
                     "signHereTabs": [
                         {
-                            "documentId": "1", "pageNumber: "1",
+                            "documentId": "1", "pageNumber": "1",
                             "recipientId": "1", "tabLabel": "SignHereTab",
                             "xPosition": "195", "yPosition": "147"
                         }
