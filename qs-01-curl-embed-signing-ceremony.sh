@@ -19,12 +19,6 @@ signerEmail='{USER_EMAIL}'
 # The document you wish to send. Path is relative to the root directory of this repo.
 fileNamePath='demo_documents/World_Wide_Corp_lorem.pdf'
 
-clientUserId='123'  # Used to indicate that the signer will use an embedded
-                    # Signing Ceremony. Represents the signer's userId within
-                    # your application.
-authenticationMethod='None'  # How is this application authenticating
-                             # the signer? See the `authenticationMethod' definition
-                             # https://developers.docusign.com/esign-rest-api/reference/Envelopes/EnvelopeViews/createRecipient
 # The API base_path
 basePath='https://demo.docusign.net/restapi'
 
@@ -61,15 +55,19 @@ printf \
     "recipients": {
         "signers": [
             {
-                "email": "${signerName}",
-                "name": "${signerEmail}",
+                "email": "' >> $request_data
+                printf "${signerName}" >> $request_data
+                printf '",
+                "name": "' >> $request_data
+                printf "${signerEmail}" >> $request_data
+                printf '",
                 "recipientId": "1",
                 "routingOrder": "1",
-                "clientUserId": "${clientUserId}",
+                "clientUserId": "1000",
                 "tabs": {
                     "signHereTabs": [
                         {
-                            "documentId": "1", "pageNumber": "1",
+                            "documentId": "1", "pageNumber: "1",
                             "recipientId": "1", "tabLabel": "SignHereTab",
                             "xPosition": "195", "yPosition": "147"
                         }
@@ -108,14 +106,14 @@ echo ""
 echo "Requesting the url for the signing ceremony..."
 curl --header "Authorization: Bearer {ACCESS_TOKEN}" \
      --header "Content-Type: application/json" \
-     --data-binary '
+     --data-binary "
 {
-    "returnUrl": "http://httpbin.org/get",
-    "authenticationMethod": "${authenticationMethod}",
-    "email": "${signerEmail}",
-    "userName": "${signerName}",
-    "clientUserId": 1000,
-}' \
+    \"returnUrl\": \"http://httpbin.org/get\",
+    \"authenticationMethod\": \"none\",
+    \"email\": \"${signerEmail}\",
+    \"userName\": \"${signerName}\",
+    \"clientUserId\": \"1000\",
+}" \
      --request POST ${basePath}/v2/accounts/${accountId}/envelopes/${ENVELOPE_ID}/views/recipient \
      --output ${response}
 
