@@ -6,6 +6,18 @@ if [[ $SHELL != *"bash"* ]]; then
   echo "PROBLEM: Run these scripts from within the bash shell."
 fi
 
+# Settings
+# Fill in these constants
+#
+# Obtain an OAuth access token from https://developers.hqtest.tst/oauth-token-generator
+accessToken='{ACCESS_TOKEN}'
+# Obtain your accountId from demo.docusign.com -- the account id is shown in the drop down on the
+# upper right corner of the screen by your picture or the default picture. 
+accountId='{ACCOUNT_ID}'
+
+# The API base_path
+basePath='https://demo.docusign.net/restapi'
+
 echo ""
 echo "Sending the list envelope status request to DocuSign..."
 echo "Results:"
@@ -18,11 +30,11 @@ echo ""
 from_date=`date -v -10d '+%Y-%m-%dT%H:%M:%S%z'`
 # Other Linux systems may be different
 
-curl --header "Authorization: Bearer {ACCESS_TOKEN}" \
+curl --header "Authorization: Bearer ${accessToken}" \
      --header "Content-Type: application/json" \
      --get \
      --data-urlencode "from_date=${from_date}" \
-     --request GET https://demo.docusign.net/restapi/v2/accounts/{ACCOUNT_ID}/envelopes
+     --request GET ${basePath}/v2/accounts/${accountId}/envelopes
 
 echo ""
 echo ""
