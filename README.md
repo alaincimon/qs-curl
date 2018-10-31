@@ -1,19 +1,18 @@
-# DocuSign Quick Start examples for PHP
+# DocuSign Quickstart API code examples with Curl
 
-Repository: [qs-php](https://github.com/docusign/qs-php)
+Repository: [qs-curl](https://github.com/docusign/qs-curl)
 
 These quick start examples provide straight-forward
-code examples for quickly
-trying the DocuSign eSignature API with the
-[PHP SDK](https://github.com/docusign/docusign-php-client).
+curl-based code examples for quickly
+trying the DocuSign eSignature API
 
 The repo includes:
 
-1. **qs-01-php-embed-signing-ceremony.php** --
+1. **qs-01-curl-embed-signing-ceremony.sh** --
    Embedding a signing ceremony in your web application.
-2. **qs-02-php-send-envelope.php** --
+2. **qs-02-curl-send-envelope.sh** --
    Sending a signing request via an email to the signer.
-3. **qs-03-php-list-envelopes.php** -- 
+3. **qs-03-curl-list-envelopes.sh** -- 
    Listing the envelopes in the user's account, including their status.
 
 These examples do not include authentication. Instead,
@@ -21,30 +20,18 @@ use the DocuSign DevCenter's
 [OAuth token generator](https://developers.docusign.com/oauth-token-generator)
 to create an access token.
 
-For a PHP JWT authentication example, see the
-[eg-01-php-jwt](https://github.com/docusign/eg-01-php-jwt)
-repository. An OAuth Authorization Code Grant example
-using the PHP Laravel framework is
-also being developed.
-
 For more information, see the
 [DocuSign DevCenter Code Examples section](https://developers.docusign.com/esign-rest-api/code-examples).
 
 ## Installation
 
-This example requires PHP v5.6 or later.
+These examples use curl and the base shell as provided in 
+modern versions of MacOS.
 
-Download or clone this repository to a file directory
-that is served by a PHP-enabled web server.
+Download or clone this repository to your machine
+then configure the examples.
 
-Then:
-
-````
-cd qs-php
-composer require docusign/esign-client
-````
-
-### Configure the example's settings
+### Configure the examples' settings
 Each quick start example is a standalone file. You will configure
 each of the example files by setting the variables at the top of each
 file:
@@ -66,14 +53,13 @@ file:
 
 ## Run the examples
 
-Use your web browser to navigate to the url for the
-php file `qs-01-php-embed-signing-ceremony.php` that
-you have just installed and configured.
+Use the bash shell to run the examples:
 
-In a similar manner, run the other examples too:
-
-* qs-02-php-send-envelope.php
-* qs-03-php-list-envelopes.php
+```
+bash qs-01-curl-embed-signing-ceremony.sh
+bash qs-02-curl-send-envelope.sh
+bash qs-03-curl-list-envelopes.sh
+```
 
 ## Support, Contributions, License
 
