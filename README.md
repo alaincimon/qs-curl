@@ -25,7 +25,7 @@ For more information, see the
 
 ## Installation
 
-These examples use curl and the base shell as provided in 
+These examples use curl and the bash shell as provided in 
 modern versions of MacOS.
 
 Download or clone this repository to your machine
