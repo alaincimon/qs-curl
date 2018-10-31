@@ -44,9 +44,8 @@ printf \
     "documents": [
         {
             "documentBase64": "' > $request_data
-cat $doc1_base64 >> $request_data
-printf \
-'",
+            cat $doc1_base64 >> $request_data
+            printf '",
             "name": "Lorem Ipsum",
             "fileExtension": "pdf",
             "documentId": "1"
@@ -91,14 +90,14 @@ cat $response
 echo ""
 
 # pull out the envelopeId
-envelopeId=`cat $response | grep envelopeId | sed 's/.*\"envelopeId\": \"//' | sed 's/\",//' | tr -d '\r'`
+envelopeId=`cat $response | grep envelopeId | sed 's/.*\"envelopeId\": \"//' | sed 's/\",.*//'`
 echo "EnvelopeId: ${envelopeId}"
 
 # Step 2. Create a recipient view (a signing ceremony view)
 #         that the signer will directly open in their browser to sign.
 #
-# The returnUrl is normally your own web app. DocuSign will redirect
-# the signer to returnUrl when the signing ceremony completes.
+# The returnUrl is normally a url provided by your own web app. 
+# DocuSign will redirect the signer to returnUrl when the signing ceremony completes.
 # For this example, we'll use http://httpbin.org/get to show the 
 # query parameters passed back from DocuSign
 
