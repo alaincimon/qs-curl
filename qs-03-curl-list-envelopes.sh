@@ -27,7 +27,7 @@ echo ""
 # Example:
 # from_date=2018-09-30T07:43:12+03:00
 # For a Mac, 10 days in the past:
-if date -v &> /dev/null; then
+if date -v -10d &> /dev/null ; then
     # Mac
     from_date=`date -v -10d '+%Y-%m-%dT%H:%M:%S%z'`
 else
