@@ -103,7 +103,7 @@ echo "EnvelopeId: ${envelopeId}"
 
 echo ""
 echo "Requesting the url for the signing ceremony..."
-curl --header "Authorization: Bearer ${access_token}" \
+curl --header "Authorization: Bearer ${accessToken}" \
      --header "Content-Type: application/json" \
      --data-binary "
 {
