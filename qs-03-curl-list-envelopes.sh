@@ -32,7 +32,7 @@ if date -v -10d &> /dev/null ; then
     from_date=`date -v -10d '+%Y-%m-%dT%H:%M:%S%z'`
 else
     # Not a Mac
-    from_date=date --date='-10 days' '+%Y-%m-%dT%H:%M:%S%z'
+    from_date=`date --date='-10 days' '+%Y-%m-%dT%H:%M:%S%z'`
 fi
 
 curl --header "Authorization: Bearer ${accessToken}" \
