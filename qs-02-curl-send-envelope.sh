@@ -8,7 +8,7 @@ fi
 # Settings
 # Fill in these constants
 #
-# Obtain an OAuth access token from https://developers.hqtest.tst/oauth-token-generator
+# Obtain an OAuth access token from https://developers.docusign.com/oauth-token-generator
 accessToken='{ACCESS_TOKEN}'
 # Obtain your accountId from demo.docusign.com -- the account id is shown in the drop down on the
 # upper right corner of the screen by your picture or the default picture. 
@@ -81,12 +81,12 @@ printf \
 curl --header "Authorization: Bearer ${accessToken}" \
      --header "Content-Type: application/json" \
      --data-binary @${request_data} \
-     --request POST ${basePath}/v2/accounts/${accountId}/envelopes \
-     --output ${response}
+     --request POST ${basePath}/v2.1/accounts/${accountId}/envelopes \
+     --output ${response} 
 
 echo ""
 echo "Response:"
-cat $response
+cat $response  | json_pp
 echo ""
 
 # cleanup

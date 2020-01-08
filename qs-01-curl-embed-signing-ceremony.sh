@@ -8,7 +8,7 @@ fi
 # Settings
 # Fill in these constants
 #
-# Obtain an OAuth access token from https://developers.hqtest.tst/oauth-token-generator
+# Obtain an OAuth access token from https://developers.docusign.com/oauth-token-generator
 accessToken='{ACCESS_TOKEN}'
 # Obtain your accountId from demo.docusign.com -- the account id is shown in the drop down on the
 # upper right corner of the screen by your picture or the default picture. 
@@ -81,16 +81,16 @@ printf \
 curl --header "Authorization: Bearer ${accessToken}" \
      --header "Content-Type: application/json" \
      --data-binary @${request_data} \
-     --request POST ${basePath}/v2/accounts/${accountId}/envelopes \
+     --request POST ${basePath}/v2.1/accounts/${accountId}/envelopes \
      --output ${response}
 
 echo ""
 echo "Response:"
-cat $response
+cat $response | json_pp
 echo ""
 
 # pull out the envelopeId
-envelopeId=`cat $response | grep envelopeId | sed 's/.*\"envelopeId\": \"//' | sed 's/\",.*//'`
+envelopeId=`cat $response | grep -oP '[\{]*\"envelopeId\"\:[\s]*"\K[^"]+'`
 echo "EnvelopeId: ${envelopeId}"
 
 # Step 2. Create a recipient view (a signing ceremony view)
@@ -113,15 +113,15 @@ curl --header "Authorization: Bearer ${accessToken}" \
     \"userName\": \"${signerName}\",
     \"clientUserId\": \"1000\",
 }" \
-     --request POST ${basePath}/v2/accounts/${accountId}/envelopes/${envelopeId}/views/recipient \
+     --request POST ${basePath}/v2.1/accounts/${accountId}/envelopes/${envelopeId}/views/recipient \
      --output ${response}
 
 echo ""
 echo "Response:"
-cat $response
+cat $response | json_pp
 echo ""
 
-signingCeremonyUrl=`cat $response | grep url | sed 's/.*\"url\": \"//' | sed 's/\".*//'`
+signingCeremonyUrl=`cat $response | grep -oP '[\{]*\"url\"\:[\s]*"\K[^"]+'`
 echo ""
 printf "The signing ceremony URL is ${signingCeremonyUrl}\n"
 printf "It is only valid for a couple of minutes. Attempting to automatically open your browser...\n"
@@ -142,5 +142,3 @@ echo ""
 echo ""
 echo "Done."
 echo ""
-
-
